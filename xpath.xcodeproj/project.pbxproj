@@ -19,6 +19,8 @@
 		9A335FAB16AD9EC900614301 /* testViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A335FAA16AD9EC900614301 /* testViewController.m */; };
 		9A335FAE16AD9EC900614301 /* testViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A335FAC16AD9EC900614301 /* testViewController_iPhone.xib */; };
 		9A335FB116AD9EC900614301 /* testViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A335FAF16AD9EC900614301 /* testViewController_iPad.xib */; };
+		9A335FB816AD9EF500614301 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A335FB716AD9EF500614301 /* libxml2.2.dylib */; };
+		9A335FBF16ADA09800614301 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A335FBE16ADA09800614301 /* GDataXMLNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,11 @@
 		9A335FAA16AD9EC900614301 /* testViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = testViewController.m; sourceTree = "<group>"; };
 		9A335FAD16AD9EC900614301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/testViewController_iPhone.xib; sourceTree = "<group>"; };
 		9A335FB016AD9EC900614301 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/testViewController_iPad.xib; sourceTree = "<group>"; };
+		9A335FB716AD9EF500614301 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		9A335FBD16ADA09800614301 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		9A335FBE16ADA09800614301 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		9A335FC016ADA0AA00614301 /* GDataDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataDefines.h; sourceTree = "<group>"; };
+		9A335FC116ADA0AA00614301 /* GDataTargetNamespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataTargetNamespace.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A335FB816AD9EF500614301 /* libxml2.2.dylib in Frameworks */,
 				9A335F9216AD9EC800614301 /* UIKit.framework in Frameworks */,
 				9A335F9416AD9EC800614301 /* Foundation.framework in Frameworks */,
 				9A335F9616AD9EC800614301 /* CoreGraphics.framework in Frameworks */,
@@ -58,6 +66,7 @@
 		9A335F8216AD9EC800614301 = {
 			isa = PBXGroup;
 			children = (
+				9A335FB716AD9EF500614301 /* libxml2.2.dylib */,
 				9A335F9716AD9EC800614301 /* xpath */,
 				9A335F9016AD9EC800614301 /* Frameworks */,
 				9A335F8E16AD9EC800614301 /* Products */,
@@ -90,6 +99,10 @@
 				9A335FA916AD9EC900614301 /* testViewController.h */,
 				9A335FAA16AD9EC900614301 /* testViewController.m */,
 				9A335FAC16AD9EC900614301 /* testViewController_iPhone.xib */,
+				9A335FBD16ADA09800614301 /* GDataXMLNode.h */,
+				9A335FC016ADA0AA00614301 /* GDataDefines.h */,
+				9A335FC116ADA0AA00614301 /* GDataTargetNamespace.h */,
+				9A335FBE16ADA09800614301 /* GDataXMLNode.m */,
 				9A335FAF16AD9EC900614301 /* testViewController_iPad.xib */,
 				9A335F9816AD9EC800614301 /* Supporting Files */,
 			);
@@ -181,6 +194,7 @@
 				9A335F9E16AD9EC800614301 /* main.m in Sources */,
 				9A335FA216AD9EC900614301 /* testAppDelegate.m in Sources */,
 				9A335FAB16AD9EC900614301 /* testViewController.m in Sources */,
+				9A335FBF16ADA09800614301 /* GDataXMLNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +283,12 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xpath/xpath-Prefix.pch";
+				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				INFOPLIST_FILE = "xpath/xpath-Info.plist";
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -280,7 +299,12 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "xpath/xpath-Prefix.pch";
+				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				INFOPLIST_FILE = "xpath/xpath-Info.plist";
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

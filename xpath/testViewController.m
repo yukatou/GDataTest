@@ -7,6 +7,8 @@
 //
 
 #import "testViewController.h"
+#import "GDataXMLNode.h"
+
 
 @interface testViewController ()
 
@@ -18,6 +20,27 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    NSString* xml = @"<product xmlns:sample='http://www.infoteria.com/jp/sample'><sample:name>pencilia</sample:name><sample:price>2500</sample:price><comment/></product>";
+    
+    //xmlをパース
+    NSError* error;
+    GDataXMLDocument* document = [[GDataXMLDocument alloc] initWithXMLString: xml options:0 error:&error];
+    GDataXMLElement *node = [document rootElement];
+    
+    //nameのみのデータが入っている配列
+    NSDictionary *myNS = [NSDictionary dictionaryWithObjectsAndKeys:
+                          @"http://www.infoteria.com/jp/sample", @"sample",
+                          @"http://hogehoge.api/test2", @"ns2", nil];
+    NSArray* nameArray = [node nodesForXPath:@"//sample:name" namespaces:myNS error:&error];
+    NSLog(@"%d", nameArray.count);
+    NSLog(@"%@", nameArray);
+    //GDataXMLElement *data = [nameArray objectAtIndex:0];
+    //NSLog(@"data = %@", [data stringValue]);
+    
+   
+    
+    [document release];
 }
 
 - (void)didReceiveMemoryWarning
